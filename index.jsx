@@ -7,6 +7,7 @@ class Spinner extends React.Component {
   render() {
     let bars = [];
     const props = this.props;
+    const { barClassName, ...rest } = props
 
     for (let i = 0; i < 12; i++) {
       let barStyle = {};
@@ -17,12 +18,16 @@ class Spinner extends React.Component {
         'rotate(' + (i * 30) + 'deg) translate(146%)';
 
       bars.push(
-        <div style={barStyle} className="react-spinner_bar" key={i} />
+        <div
+          style={barStyle}
+          className={(barClassName || '') + ' react-spinner_bar'}
+          key={i}
+        />
       );
     }
 
     return (
-      <div {...props} className={(props.className || '') + ' react-spinner'}>
+      <div {...rest} className={(props.className || '') + ' react-spinner'}>
         {bars}
       </div>
     );
